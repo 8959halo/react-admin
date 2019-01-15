@@ -11,12 +11,24 @@ import axios from 'axios'
 import {message} from 'antd'
 
 
+
+/*
 export default function ajax(url, data ={}, method = 'GET') {
-    if (method ==='GET'){
-      return axios.get(url,{params:data})
-    }else{
-      return axios.post(url,data)
-    }
+
+    return new Promise((resolve, reject) => {
+
+        if (method ==='GET'){
+            promise = axios.get(url,{params:data})
+        }else{
+            promise = axios.post(url,data)
+        }
+        promise.then(resolve => {
+            resolve(response)
+        }).catch(error =>{
+            message.error('请求出错')
+        })
+    })
+
 }
 
  async function reqLogin() {
@@ -29,10 +41,11 @@ export default function ajax(url, data ={}, method = 'GET') {
     }
 
 }
+*/
 
 
 
-/*
+
 export default function ajax(url, data={}, method='GET') {
 
   return new Promise((resolve, reject) => {
@@ -53,10 +66,10 @@ export default function ajax(url, data={}, method='GET') {
     })
   })
 }
-*/
 
 
-/*
+
+
 async function reqLogin() {
   const result = await ajax('/login', {username: 'tom', password: '123'}, 'POST')
   if(result.status===0) {
@@ -64,4 +77,4 @@ async function reqLogin() {
   } else {
     alert('失败了')
   }
-}*/
+}

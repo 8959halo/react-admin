@@ -38,7 +38,8 @@ export default class Login extends Component {
       storageUtils.saveUser(user)  // local中
       MemoryUtils.user = user // 内存中
 
-      // 跳转到管理界面
+      // 跳转到管理界面   histoty用于切换页面   replace替换当前
+      //   this.props.history.replace('/')
       this.props.history.replace('/')
     } else { // 登陆失败
       this.setState({

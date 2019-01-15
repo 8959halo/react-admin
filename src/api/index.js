@@ -8,6 +8,16 @@
 import ajax from './ajax'
 const BASE = 'http://localhost:5000'
 
+
+/*
+//登录
+export const reqLogin =(username,password) => ajax('/login', {username,password},'POST')
+//添加用户
+export const reqAdd = () => ajax('/manage/user/add',user,'POST')
+
+
+*/
+
 // 登陆
 export const reqLogin = (username, password) => ajax('/login', {username, password}, 'POST')
 
