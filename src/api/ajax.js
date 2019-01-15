@@ -10,6 +10,29 @@
 import axios from 'axios'
 import {message} from 'antd'
 
+
+export default function ajax(url, data ={}, method = 'GET') {
+    if (method ==='GET'){
+      return axios.get(url,{params:data})
+    }else{
+      return axios.post(url,data)
+    }
+}
+
+ async function reqLogin() {
+  //返回的是一个promise， 但是axios异步调了response 现在还不是一个response 需要await
+    const response = await ajax('/login', {username: 'jerry',password:'123'},'POST')
+     //取出response响应体数据data
+    const result = response.data
+    if (result.status===1){
+
+    }
+
+}
+
+
+
+/*
 export default function ajax(url, data={}, method='GET') {
 
   return new Promise((resolve, reject) => {
@@ -30,6 +53,7 @@ export default function ajax(url, data={}, method='GET') {
     })
   })
 }
+*/
 
 
 /*
