@@ -1,68 +1,71 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# day01
+## 0. 准备
+    项目描述: 做什么/特点/功能模块/主要技术/开发方式
+    技术选型: 分方向详细技术
+    API接口: 理解/ 接口文档/对接口
 
-## Available Scripts
+## 1. 创建项目, 并运行
+	create-react-app react-admin
+	npm start
 
-In the project directory, you can run:
+## 2. 对项目进行git版本控制
+	创建本地仓库
+	创建远程仓库
+	将本地仓库推送到远程
+	创建dev分支并推送到远程
+	克隆远程分支, 并创建本地dev分支
 
-### `npm start`
+## 3. 设计源码的基本目录, 实现App基本组件效果
+	assets	
+	api
+	components
+	pages
+	App.js
+	index.js
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 4. 引入antd, 实现按需打包和自定义主题
+	下载antd和相关的工具包
+	配置1: config-overrides.js
+	配置2: package.json
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## 5. 引入react-router-dom, 实现基本的一级路由
+	<BrowserRouter>/<HashRouter>
+	<Switch>
+	<Route>
+	login/admin
 
-### `npm test`
+## 6. 登陆的基本静态界面
+	<Form>
+	<Form.Item>
+	<Input>
+	<Icon>
+	<Button>
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## 7. 登陆的表单验证和数据收集
+	配置对象: 属性名是一些特定的名称的对象
+	验证需求:
+		用户名: 长度>=4的字符串
+		密码: 长度在4-8位的字符串
+	包装Form组件: Form.create()(LoginForm)
+		操作表单项(Field)数据
+		对表达项数据进行实时验证
+	form对象:
+		this.props.form: 得到form对象
+		getFieldDecorator(fieldName, options)(<Input/>): 包装Input组件
+		resetFields(): 重置所有输入框
+	表单验证方式:
+		纯声明式验证
+		半编程式验证
+		
+# day02
+## 1. ajax请求函数模块
+	内部封装axios
+    函数的返回值为promise对象
+    目标:
+      1. 请求错误统一处理
+      2. 异步返回的是data, 而不是response
+    解决: 
+      自定义promsie对象
+      在catch回调中: 不调用reject(), 而是显示提示
+      在then回调中:  resolve(response.data)
+      
