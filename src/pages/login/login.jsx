@@ -33,6 +33,9 @@ export default class Login extends Component {
       /*
       localStorage
       sessionStorage
+
+      yarn add store
+      使用store的set方法（）
        */
       // localStorage.setItem('USER_KEY', JSON.stringify(user))
       storageUtils.saveUser(user)  // local中

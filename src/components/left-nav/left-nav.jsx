@@ -11,6 +11,9 @@ const Item = Menu.Item
 /*
 左侧导航组件
  */
+
+
+
 class LeftNav extends Component {
 
   /*
@@ -60,10 +63,13 @@ class LeftNav extends Component {
   }
 
 
+
   render() {
-    // 当前请求的路径
+
+    // 当前请求的路径    路由组件才有location属性
     const path = this.props.location.pathname
-    console.log('path', path)
+
+    // console.log('path', path)
     return (
       <div className='left-nav'>
         <NavLink to='/home' className='logo'>
@@ -71,6 +77,7 @@ class LeftNav extends Component {
           <h1>硅谷后台</h1>
         </NavLink>
 
+        {/*菜单的显示方式   defaultSelectedKeys 初始展开的subMenu项key数组    */}
         <Menu mode="inline" theme='dark' defaultSelectedKeys={[path]}>
           {this.menuNodes}
         </Menu>
@@ -79,5 +86,7 @@ class LeftNav extends Component {
   }
 }
 
+
 // 将一个非路由组件包装生成一个路由组件, 向非路由组件传递路由组件才有的3个属性: history/location/match
+// export default withRouter(LeftNav)
 export default withRouter(LeftNav)

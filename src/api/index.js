@@ -24,3 +24,24 @@ export const reqLogin = (username, password) => ajax('/login', {username, passwo
 // 添加用户
 export const reqAddUser = (user) => ajax('/manage/user/add', user, 'POST')
 
+//获取天气
+export function reqWeather(city) {
+    return new Promise(function (resolve, reject) {
+        //执行异步ajax请求
+        jsonp(
+            url,
+        {
+            param :'callback'
+        },
+            (error,data) =>{
+                console.log('callback',error,data);
+
+            }
+            )
+        //如果请求成功，调用resolve方法来传递数据
+
+        //如果请求失败，显示提示错误信息
+    })
+
+    }
+

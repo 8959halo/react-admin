@@ -8,7 +8,7 @@ import store from 'store'
 
 const USER_KEY = 'user_key'
 
-function setItem(name, value) {
+function setItem(name, value) {    //value不能是函数和null 、undefind
   if (value && typeof value !== 'function') {
     store.set(name, value)
   } else {
