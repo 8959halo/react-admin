@@ -16,15 +16,25 @@ const BASE = 'http://localhost:5000'
 export const reqLogin =(username,password) => ajax('/login', {username,password},'POST')
 //添加用户
 export const reqAdd = () => ajax('/manage/user/add',user,'POST')
-
-
 */
+
+
+
 
 // 登陆
 export const reqLogin = (username, password) => ajax('/login', {username, password}, 'POST')
 
 // 添加用户
 export const reqAddUser = (user) => ajax('/manage/user/add', user, 'POST')
+
+//获取一级/二级分类列表                       ajax接收三个请求参数  url  包含所有参数数据的对象  请求方式
+export const reqCategorys = (parentId) => ajax('/manage/category/list',{parentId})
+
+//添加分类
+export const reqAddCategorys = (parentId,categoryName) => ajax('/manage/category/add',{parentId,categoryName},'POST')
+
+//更新分类
+export const reqUpdateCategorys = ({categoryId,categoryName}) => ajax('/manage/category/update',{categoryId,categoryName},'POST')
 
 
 
