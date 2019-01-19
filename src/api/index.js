@@ -31,10 +31,10 @@ export const reqAddUser = (user) => ajax('/manage/user/add', user, 'POST')
 export const reqCategorys = (parentId) => ajax('/manage/category/list',{parentId})
 
 //添加分类
-export const reqAddCategorys = (parentId,categoryName) => ajax('/manage/category/add',{parentId,categoryName},'POST')
+export const reqAddCategory = (parentId,categoryName) => ajax('/manage/category/add',{parentId,categoryName},'POST')
 
 //更新分类
-export const reqUpdateCategorys = ({categoryId,categoryName}) => ajax('/manage/category/update',{categoryId,categoryName},'POST')
+export const reqUpdateCategory = ({categoryId,categoryName}) => ajax('/manage/category/update',{categoryId,categoryName},'POST')
 
 
 
