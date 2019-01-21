@@ -33,16 +33,12 @@ export default class Login extends Component {
       /*
       localStorage
       sessionStorage
-
-      yarn add store
-      使用store的set方法（）
        */
       // localStorage.setItem('USER_KEY', JSON.stringify(user))
       storageUtils.saveUser(user)  // local中
       MemoryUtils.user = user // 内存中
 
-      // 跳转到管理界面   histoty用于切换页面   replace替换当前
-      //   this.props.history.replace('/')
+      // 跳转到管理界面
       this.props.history.replace('/')
     } else { // 登陆失败
       this.setState({
@@ -78,8 +74,8 @@ export default class Login extends Component {
 
 /*
 包含<Form>被包装组件
- */	
-class LoginForm extends Component{
+ */
+class LoginForm extends React.Component {
 
   static propTypes = {
     login: PropTypes.func.isRequired
