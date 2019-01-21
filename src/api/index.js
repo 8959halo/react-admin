@@ -36,6 +36,9 @@ export const reqAddCategory = (parentId,categoryName) => ajax('/manage/category/
 //更新分类
 export const reqUpdateCategory = ({categoryId,categoryName}) => ajax('/manage/category/update',{categoryId,categoryName},'POST')
 
+//获取指定页的商品分类列表
+export const reqProducts = (pageNum,pageSize) => ajax('/manage/product/list',{pageNum,pageSize})
+
 
 
 //获取天气

@@ -107,7 +107,7 @@ class LeftNav extends Component {
     render() {
         // 当前请求的路径
         const path = this.selectKey || this.props.location.pathname
-        console.log('path', path)
+        // console.log('path', path)
         return (
             <div className='left-nav'>
                 <NavLink to='/home' className='logo'>
