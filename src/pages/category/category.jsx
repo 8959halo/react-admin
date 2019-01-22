@@ -188,7 +188,7 @@ export default class Category extends Component {
             ? <span style={{fontSize: 20}}>一级分类列表</span>
             : (
                 <span>
-                  <a href="javascript:" onClick={this.showCategorys}>一级分类222</a>
+                  <a href="javascript:" onClick={this.showCategorys}>一级分类</a>
                   &nbsp;&nbsp;&nbsp;
                   <Icon type="arrow-right" />
                   &nbsp;&nbsp;&nbsp;
