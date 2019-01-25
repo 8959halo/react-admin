@@ -23,7 +23,8 @@ export default class Role extends Component {
     state ={
         isShowAdd: false,  // 显示添加角色的Modal
         isShowRoleAuth:false, //显示设置角色权限的Modal
-        roles:[] //角色列表
+        roles:[], //角色列表
+        role: {}  //当前选中的对象
     }
     /*
   初始化Table的字段数据
@@ -117,6 +118,16 @@ export default class Role extends Component {
         }
     }
 
+    //用来绑定行操作的事件监听
+    onRow = (role) => {
+        return {
+            onClick: (event) =>{ //点击行
+                this.setState({
+                    role
+                })
+            },
+        }
+    }
     //初始化
     componentWillMount(){
         this.initColumns()
@@ -126,20 +137,36 @@ export default class Role extends Component {
     }
 
     render() {
-        const {roles,isShowAdd,isShowRoleAuth} = this.state
+        const {roles,isShowAdd,isShowRoleAuth, role} = this.state
+
+        //选择功能的配置
+        const rowSelection = {
+            type:'radio',
+            selectedRowKeys: [role._id],
+            onChange: (selectedRowKeys,selectedRows) =>{
+                console.log('----------',selectedRowKeys, selectedRows);
+                //界面显示需要更新状态中的role的值，
+                this.setState({
+                    role: selectedRows[0]
+                })
+            }
+
+
+        }
         return (
             <div>
                 <Card>
                     <Button type='primary' onClick={()=> this.showAddRole()}>创建角色</Button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <Button type='primary' onClick={()=> this.showRoleAuth()}>设置角色权限</Button>
+                                                {/*判断当前角色有没有_id 有的话就可以操作，没有就disabled*/}
+                    <Button type='primary' onClick={()=> this.showRoleAuth()} disabled={!role._id}>设置角色权限</Button>
                 </Card>
                 <Table
                     columns={this.columns}
                     rowKey='_id'
                     dataSource={roles}
                     bordered
-                    // rowSelection={rowSelection}
+                    rowSelection={rowSelection}
                     onRow={this.onRow}
                     pagination={{defaultPageSize: 100, showQuickJumper: true}}>
 
@@ -162,7 +189,7 @@ export default class Role extends Component {
                     }}
                     onOk={this.addRole}
                 >
-                    <AddRoleForm setForm={(form) => this.form = form}/>
+                    <RoleAuthForm setForm={(form) => this.form = form}/>
                 </Modal>
 
 
@@ -211,11 +238,26 @@ AddRoleForm = Form.create()(AddRoleForm)
  */
 class RoleAuthForm extends PureComponent {
 
+    //外部传进来roleName的值
+    //声明
+    static propTypes = {
+        roleName : PropTypes.string
+    }
+
+
 
     render() {
+        const {roleName} = this.props
+        const formItemLayout = {
+            labelCol: {span: 5},
+            wrapperCol: {span: 16}
+        }
+
         return (
+
             <Form>
-                <FormItem label='角色名称'>
+                <FormItem label='角色名称：' {...formItemLayout}>
+                    <Input value={roleName}/>
                 </FormItem>
             </Form>
         )
