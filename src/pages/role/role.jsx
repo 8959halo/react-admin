@@ -244,6 +244,26 @@ class RoleAuthForm extends PureComponent {
         roleName : PropTypes.string
     }
 
+    onCheck = (checkedKeys, info) => {
+        console.log('onCheck', checkedKeys, info);
+    }
+
+    //渲染多个TreeNode
+    renderTreeNodes = (menuList) =>{
+        //遍历menuList 生成数组
+        return menuList.reduce((pre,menu) =>{
+            const node = <TreeNode title={menu.title} key={menu.key}>
+                {
+                    menu.children?
+                        this.renderTreeNodes(menu.children)
+                        :null
+                }
+            </TreeNode>
+            pre.push(node)
+            return pre
+        } ,[])
+    }
+
 
 
     render() {
@@ -257,8 +277,17 @@ class RoleAuthForm extends PureComponent {
 
             <Form>
                 <FormItem label='角色名称：' {...formItemLayout}>
-                    <Input value={roleName}/>
+                    <Input value={roleName} disabled/>
                 </FormItem>
+                <Tree
+                    checkable
+                    defaultExpandAll
+                    onCheck={this.onCheck}
+                >
+                    <TreeNode title="平台权限" key="0-0">
+                        {this.renderTreeNodes(menuList)}
+                    </TreeNode>
+                </Tree>
             </Form>
         )
     }
